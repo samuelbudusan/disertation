@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="452" height="326"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="3485" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="fbdd0" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Fusion"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="1b33b" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="East"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="e57ce" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="9ceeb" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a717a" class="javax.swing.JButton" binding="fusionButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Fusion"/>
+            </properties>
+          </component>
+          <component id="508b2" class="javax.swing.JButton" binding="imbunatatireButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Imbunatatire"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="e63d0" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <hspacer id="a670">
+            <constraints/>
+          </hspacer>
+          <component id="eb910" class="javax.swing.JButton" binding="imageOneButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Image One"/>
+            </properties>
+          </component>
+          <component id="31566" class="javax.swing.JButton" binding="imageTwoButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Image Two"/>
+            </properties>
+          </component>
+          <component id="fbb5f" class="javax.swing.JComboBox" binding="fusionMethodSelect">
+            <constraints/>
+            <properties>
+              <model>
+                <item value="Simple Average"/>
+                <item value="Simple Maximum"/>
+                <item value="Simple Minimum"/>
+                <item value="Laplacian Pyramid"/>
+                <item value="Morphological Pyramid"/>
+                <item value="Haar Wavelet"/>
+              </model>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
