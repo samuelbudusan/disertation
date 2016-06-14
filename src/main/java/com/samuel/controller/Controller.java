@@ -20,28 +20,34 @@ public class Controller {
     private static ImagePlus image2;
     private static ImagePlus resultImage;
 
-    public static boolean loadImage(String path, int imageNr) {
+    public static ImagePlus loadImage(String path, int imageNr) {
         Opener opener = new Opener();
-
-        boolean ok = false;
 
         if (imageNr == 1) {
             if (image1 != null) {
                 image1.close();
             }
             image1 = opener.openImage(path);
-            image1.show();
-            ok = true;
-        } else if (imageNr == 2) {
+            return image1;
+        } else {
             if (image2 != null) {
                 image2.close();
             }
             image2 = opener.openImage(path);
-            image2.show();
-            ok = true;
+            return image2;
         }
+    }
 
-        return ok;
+    public static void displayImage(Integer imageNr) {
+        if (imageNr == 1) {
+            if (image1 != null) {
+               image1.show();
+            }
+        } else {
+            if (image2 != null) {
+                image2.show();
+            }
+        }
     }
 
     public static void fuse(Integer fusionMethodId) {

@@ -1,91 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="Main" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="452" height="326"/>
+      <xy x="20" y="20" width="804" height="664"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="3485" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints border-constraint="North"/>
+      <grid id="ab8db" binding="North" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="800" height="250"/>
+            <preferred-size width="800" height="250"/>
+            <maximum-size width="800" height="250"/>
+          </grid>
+        </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="fbdd0" class="javax.swing.JLabel">
-            <constraints/>
-            <properties>
-              <text value="Fusion"/>
-            </properties>
-          </component>
+          <grid id="39f0f" binding="LeftPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="10" bottom="0" right="10"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="380" height="240"/>
+                <preferred-size width="380" height="240"/>
+                <maximum-size width="380" height="240"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="41114" binding="Image1Panel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="225" height="200"/>
+                    <preferred-size width="225" height="200"/>
+                    <maximum-size width="225" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="line">
+                  <color color="-4473925"/>
+                </border>
+                <children/>
+              </grid>
+              <grid id="2b106" binding="Image1ButtonsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="true">
+                    <minimum-size width="225" height="30"/>
+                    <preferred-size width="225" height="30"/>
+                    <maximum-size width="225" height="30"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="2765d" class="javax.swing.JButton" binding="LoadImageOneButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Load Image"/>
+                    </properties>
+                  </component>
+                  <component id="cfad6" class="javax.swing.JButton" binding="DisplayImageOneButton">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Display Image"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="8472b" binding="RightPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="10" bottom="0" right="10"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="380" height="240"/>
+                <preferred-size width="380" height="240"/>
+                <maximum-size width="380" height="240"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="1158b" binding="Image2Panel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="225" height="200"/>
+                    <preferred-size width="225" height="200"/>
+                    <maximum-size width="225" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="line">
+                  <color color="-4473925"/>
+                </border>
+                <children/>
+              </grid>
+              <grid id="f54b9" binding="Image2ButtonsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="225" height="30"/>
+                    <preferred-size width="225" height="30"/>
+                    <maximum-size width="225" height="30"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="df6c7" class="javax.swing.JButton" binding="LoadImageTwoButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Load Image"/>
+                    </properties>
+                  </component>
+                  <component id="130ec" class="javax.swing.JButton" binding="DisplayImageTwoButton">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Display Image"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
         </children>
       </grid>
-      <grid id="1b33b" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="601e2" binding="South" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="East"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="800" height="250"/>
+            <preferred-size width="800" height="250"/>
+            <maximum-size width="800" height="250"/>
+          </grid>
+        </constraints>
         <properties/>
         <border type="none"/>
         <children/>
       </grid>
-      <grid id="e57ce" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="9f571" binding="Center" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="West"/>
-        <properties/>
-        <border type="none"/>
-        <children/>
-      </grid>
-      <grid id="9ceeb" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints border-constraint="South"/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="a717a" class="javax.swing.JButton" binding="fusionButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <text value="Fusion"/>
-            </properties>
-          </component>
-          <component id="508b2" class="javax.swing.JButton" binding="imbunatatireButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <text value="Imbunatatire"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="e63d0" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints border-constraint="Center"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true">
+            <minimum-size width="800" height="150"/>
+            <preferred-size width="800" height="150"/>
+            <maximum-size width="800" height="150"/>
+          </grid>
+        </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <hspacer id="a670">
-            <constraints/>
-          </hspacer>
-          <component id="eb910" class="javax.swing.JButton" binding="imageOneButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <text value="Image One"/>
-            </properties>
-          </component>
-          <component id="31566" class="javax.swing.JButton" binding="imageTwoButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <text value="Image Two"/>
-            </properties>
-          </component>
-          <component id="fbb5f" class="javax.swing.JComboBox" binding="fusionMethodSelect">
-            <constraints/>
-            <properties>
-              <model>
-                <item value="Simple Average"/>
-                <item value="Simple Maximum"/>
-                <item value="Simple Minimum"/>
-                <item value="Laplacian Pyramid"/>
-                <item value="Morphological Pyramid"/>
-                <item value="Haar Wavelet"/>
-              </model>
-            </properties>
-          </component>
+          <grid id="50dfa" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="625" height="130"/>
+                <preferred-size width="625" height="130"/>
+                <maximum-size width="625" height="130"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="line" title="Fusion Options" title-justification="1">
+              <color color="-4473925"/>
+            </border>
+            <children/>
+          </grid>
         </children>
       </grid>
     </children>
