@@ -1,4 +1,5 @@
 import com.samuel.controller.Controller;
+import com.samuel.enums.ImagesEnum;
 import ij.ImagePlus;
 import ij.io.Opener;
 import ij.process.ImageProcessor;
@@ -33,84 +34,86 @@ public class UI {
     private JButton DisplayImageOneButton;
     private JButton LoadImageTwoButton;
     private JButton DisplayImageTwoButton;
-  /*  private JButton imageOneButton;
-    private JButton imageTwoButton;
-    private JButton fusionButton;
-    private JButton imbunatatireButton;
-    private JComboBox fusionMethodSelect;*/
+    private JComboBox fusionMethod;
+    private JLabel methodLabel;
+    private JButton fuseButton;
+    private JPanel SouthLeftPanel;
+    private JPanel SouthRightPanel;
+    private JPanel FusedImagePanel;
+    private JPanel FusedImageButtonsPanel;
+    private JButton SaveFusedImage;
+    private JButton DisplayFusedImage;
 
     public UI() {
         LoadImageOneButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                openDicom(1);
+                openDicom(ImagesEnum.IMAGE_ONE);
                 System.out.println("Load Image One");
             }
         });
+
         LoadImageTwoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                openDicom(2);
+                openDicom(ImagesEnum.IMAGE_TWO);
                 System.out.println("Load Image Two");
             }
         });
 
         DisplayImageOneButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Controller.displayImage(1);
+                Controller.showImage(ImagesEnum.IMAGE_ONE.getImageNr());
+                System.out.println("Display Image One");
             }
         });
+
         DisplayImageTwoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Controller.displayImage(2);
+                Controller.showImage(ImagesEnum.IMAGE_TWO.getImageNr());
+                System.out.println("Display Image Two");
             }
         });
-      /*  fusionButton.addActionListener(new ActionListener() {
+
+        fuseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Controller.fuse(fusionMethodSelect.getSelectedIndex());
+                Graphics graphics = FusedImagePanel.getGraphics();
+                Controller.fuse(fusionMethod.getSelectedIndex(), graphics);
                 System.out.println("Fuse images");
             }
         });
 
-        imbunatatireButton.addActionListener(new ActionListener() {
+        DisplayFusedImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Controller.improveQuality();
-                System.out.println("Improve quality for merged image");
+                Controller.showImage(ImagesEnum.FUSED_IMAGE.getImageNr());
+                System.out.println("Display fused image");
             }
-        });*/
+        });
+
+        SaveFusedImage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Save fused image");
+            }
+        });
     }
 
-    private void openDicom(int imageNr) {
+    private void openDicom(ImagesEnum imagesEnum) {
         JFileChooser fileChooser = new JFileChooser("/");
-//        fileChooser.setFileFilter(new FileNameExtensionFilter("DICOM", "dcm"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("JPG", "jpg"));
-//        fileChooser.setFileFilter(new FileNameExtensionFilter("PNG", "png"));
 
         int retVal = fileChooser.showOpenDialog(frame);
 
         if (retVal == JFileChooser.APPROVE_OPTION) {
             String path = fileChooser.getSelectedFile().getAbsolutePath();
-            ImagePlus image = Controller.loadImage(path, imageNr);
-            if (image != null) {
-                paintImage(image, imageNr);
-                System.out.println("DICOM opened");
+
+            if (imagesEnum.equals(ImagesEnum.IMAGE_ONE)) {
+                Graphics graphics = Image1Panel.getGraphics();
+                Controller.loadImage(path, ImagesEnum.IMAGE_ONE, graphics);
             } else {
-                System.out.println("DICOM open ERROR");
+                if (imagesEnum.equals(ImagesEnum.IMAGE_TWO)) {
+                    Graphics graphics = Image2Panel.getGraphics();
+                    Controller.loadImage(path, ImagesEnum.IMAGE_TWO, graphics);
+                }
             }
         }
-    }
-
-    private void paintImage(ImagePlus originalImage, Integer imageNumber) {
-        Graphics graphics = null;
-        if (imageNumber == 1) {
-            graphics = Image1Panel.getGraphics();
-        } else {
-            graphics = Image2Panel.getGraphics();
-        }
-        ImagePlus duplicatedImage = originalImage.duplicate();
-        ImageProcessor imageProcessor = duplicatedImage.getProcessor();
-        imageProcessor.setInterpolate(true);
-        ImageProcessor resizedImageProcessor = imageProcessor.resize(225, 200);
-        ImagePlus small = new ImagePlus("small", resizedImageProcessor);
-        graphics.drawImage(small.getBufferedImage(), 0, 0, null);
     }
 
     public static void main(String[] args) {

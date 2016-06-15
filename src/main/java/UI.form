@@ -42,7 +42,7 @@
                   </grid>
                 </constraints>
                 <properties/>
-                <border type="line">
+                <border type="line" title="Image One">
                   <color color="-4473925"/>
                 </border>
                 <children/>
@@ -101,7 +101,7 @@
                   </grid>
                 </constraints>
                 <properties/>
-                <border type="line">
+                <border type="line" title="Image Two">
                   <color color="-4473925"/>
                 </border>
                 <children/>
@@ -140,7 +140,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="601e2" binding="South" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="601e2" binding="South" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -151,7 +151,81 @@
         </constraints>
         <properties/>
         <border type="none"/>
-        <children/>
+        <children>
+          <grid id="ba6e6" binding="SouthLeftPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="10" bottom="0" right="10"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="380" height="240"/>
+                <preferred-size width="380" height="240"/>
+                <maximum-size width="380" height="240"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="b2ce3" binding="FusedImagePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="225" height="200"/>
+                    <preferred-size width="225" height="200"/>
+                    <maximum-size width="225" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="line" title="Fused Image">
+                  <font/>
+                  <color color="-4473925"/>
+                </border>
+                <children/>
+              </grid>
+              <grid id="7fe62" binding="FusedImageButtonsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="225" height="30"/>
+                    <preferred-size width="225" height="30"/>
+                    <maximum-size width="225" height="30"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="4a4f5" class="javax.swing.JButton" binding="SaveFusedImage">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Save Image"/>
+                    </properties>
+                  </component>
+                  <component id="9ce18" class="javax.swing.JButton" binding="DisplayFusedImage">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Display Image"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="dccbf" binding="SouthRightPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="10" bottom="0" right="10"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="380" height="240"/>
+                <preferred-size width="380" height="240"/>
+                <maximum-size width="380" height="240"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
       </grid>
       <grid id="9f571" binding="Center" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
@@ -165,8 +239,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="50dfa" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="50dfa" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="625" height="130"/>
@@ -178,7 +251,35 @@
             <border type="line" title="Fusion Options" title-justification="1">
               <color color="-4473925"/>
             </border>
-            <children/>
+            <children>
+              <component id="a163e" class="javax.swing.JLabel" binding="methodLabel">
+                <constraints/>
+                <properties>
+                  <text value="Method"/>
+                </properties>
+              </component>
+              <component id="2d0f4" class="javax.swing.JComboBox" binding="fusionMethod">
+                <constraints/>
+                <properties>
+                  <model>
+                    <item value="Simple Average Fusion"/>
+                    <item value="Simple Maximum Fusion"/>
+                    <item value="Simple Minimum Fusion"/>
+                    <item value="Laplacian Pyramid Fusion"/>
+                    <item value="Morphological Pyramid Fusion"/>
+                    <item value="Haar Wavelet Fusion"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="53f67" class="javax.swing.JButton" binding="fuseButton">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <text value="Fuse"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+            </children>
           </grid>
         </children>
       </grid>
