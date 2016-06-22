@@ -10,7 +10,7 @@ import ij.ImagePlus;
  */
 public class FusionServiceImpl implements FusionService {
 
-    public ImagePlus fuse(ImagePlus image1, ImagePlus image2, FusionMethodEnum fusionMethodEnum) {
+    public ImagePlus fuse(ImagePlus image1, ImagePlus image2, Integer level, Double sigma, FusionMethodEnum fusionMethodEnum) {
         FusionMethod fusionMethod;
 
         switch (fusionMethodEnum) {
@@ -24,13 +24,13 @@ public class FusionServiceImpl implements FusionService {
                 fusionMethod = new SimpleMinimumFusion();
                 break;
             case LAPLACIAN_PYRAMID_FUSION:
-                fusionMethod = new LaplacianPyramidFusion();
+                fusionMethod = new LaplacianPyramidFusion(level, sigma, new SimpleMaximumFusion());
                 break;
             case MORPHOLOGICAL_PYRAMID_FUSION:
-                fusionMethod = new MorphologicalPyramidFusion();
+                fusionMethod = new MorphologicalPyramidFusion(level, sigma, new SimpleMaximumFusion());
                 break;
             case HAAR_WAVELET_FUSION:
-                fusionMethod = new HaarWaveletFusion();
+                fusionMethod = new HaarWaveletFusion(level, new SimpleMaximumFusion());
                 break;
             default:
                 fusionMethod = new SimpleAverageFusion();

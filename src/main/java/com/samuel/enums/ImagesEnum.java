@@ -12,7 +12,8 @@ public enum ImagesEnum {
 
     IMAGE_ONE(1),
     IMAGE_TWO(2),
-    FUSED_IMAGE(3);
+    FUSED_IMAGE(3),
+    PERFECT_IMAGE(4);
 
     private static Map<Integer, ImagesEnum> IMAGES = Maps.newHashMapWithExpectedSize(values().length);
 

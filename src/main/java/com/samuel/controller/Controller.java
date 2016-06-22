@@ -2,27 +2,25 @@ package com.samuel.controller;
 
 import com.samuel.enums.FusionMethodEnum;
 import com.samuel.enums.ImagesEnum;
+import com.samuel.enums.MessageDialogEnum;
 import com.samuel.fusion.FusionService;
 import com.samuel.fusion.FusionServiceImpl;
 import com.samuel.io.DicomIO;
+import com.samuel.io.ResultsWriter;
 import com.samuel.processing.ImageResizer;
 import com.samuel.processing.SmoothFilterIntensityModulation;
 import com.samuel.processing.StackConverter;
 import com.samuel.quality_metrics.*;
 import ij.ImagePlus;
 import ij.io.Opener;
-import ij.plugin.DICOM;
-import ij.plugin.StackCombiner;
-import ij.process.ImageConverter;
 import ij.process.ImageProcessor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.util.List;
 
 /**
  * Created by Samuel on 5/6/2016.
@@ -32,6 +30,7 @@ public class Controller {
     private static ImagePlus image1;
     private static ImagePlus image2;
     private static ImagePlus resultImage;
+    private static ImagePlus perfectImage;
 
     public static void loadImage(String path, ImagesEnum imagesEnum, Graphics graphics) {
         Opener opener = new Opener();
@@ -60,6 +59,25 @@ public class Controller {
         if (!result) {
             System.out.println("Error opening image!");
         }
+    }
+
+    public static boolean openPerfectImage(String path) {
+        Opener opener = new Opener();
+        DicomIO dicomIO = new DicomIO();
+
+        if (perfectImage != null) {
+            perfectImage.close();
+        }
+        if (path.contains(".dcm")) {
+            perfectImage = dicomIO.open(path);
+        } else {
+            perfectImage = opener.openImage(path);
+        }
+
+        if (perfectImage != null && perfectImage.getImage() != null) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean displayImage(ImagesEnum imagesEnum, Graphics graphics) {
@@ -106,12 +124,12 @@ public class Controller {
         }
     }
 
-    public static void fuse(Integer fusionMethodId, Graphics graphics) {
+    public static void fuse(Integer fusionMethodId, Integer level, Double sigma, Graphics graphics) {
         FusionService fusionService = new FusionServiceImpl();
 
         long startMillis = System.currentTimeMillis();
 
-        resultImage = fusionService.fuse(image1, image2, FusionMethodEnum.getById(fusionMethodId));
+        resultImage = fusionService.fuse(image1, image2, level, sigma, FusionMethodEnum.getById(fusionMethodId));
 
         long endMillis = System.currentTimeMillis();
 
@@ -122,25 +140,40 @@ public class Controller {
         resultImage.setTitle(resultImage.getTitle() + "_" + duration + "ms");
 
         displayImage(ImagesEnum.FUSED_IMAGE, graphics);
-        /*DecimalFormat df = new DecimalFormat("##.00");
-        double error = AverageDifference.calculateQuality(image1, resultImage);
-        System.out.println("AverageDifference: " + error);
-        error = MeanSquaredError.calculateQuality(image1, resultImage);
-        System.out.println("MeanSquaredError: " + error);
-        error = NormalizedAbsoluteError.calculateQuality(image1, resultImage);
-        System.out.println("NormalizedAbsoluteError: " + error);
-        error = NormalizedCrossCorrelation.calculateQuality(image1, resultImage);
-        System.out.println("NormalizedCrossCorrelation: " + error);
-        error = PeakSignalToNoiseRation.calculateQuality(image1, resultImage);
-        System.out.println("PeakSignalToNoiseRation: " + error);
-        error = StructuralContent.calculateQuality(image1, resultImage);
-        System.out.println("StructuralContent: " + error);*/
 
+
+    }
+
+    public static void getQualityMetrics(JTextArea textArea) {
+//        DecimalFormat df = new DecimalFormat("##.00");
+        textArea.setText("");
+        double error = AverageDifference.calculateQuality(perfectImage, resultImage);
+        textArea.append("AverageDifference: " + error + "\n");
+        error = MeanSquaredError.calculateQuality(perfectImage, resultImage);
+        textArea.append("MeanSquaredError: " + error + "\n");
+        error = NormalizedAbsoluteError.calculateQuality(perfectImage, resultImage);
+        textArea.append("NormalizedAbsoluteError: " + error + "\n");
+        error = NormalizedCrossCorrelation.calculateQuality(perfectImage, resultImage);
+        textArea.append("NormalizedCrossCorrelation: " + error + "\n");
+        error = PeakSignalToNoiseRation.calculateQuality(perfectImage, resultImage);
+        textArea.append("PeakSignalToNoiseRation: " + error + "\n");
+        error = StructuralContent.calculateQuality(perfectImage, resultImage);
+        textArea.append("StructuralContent: " + error + "\n");
     }
 
     public static void enhanceResult() {
         ImagePlus enhancedImage = SmoothFilterIntensityModulation.enhanceImageResolution(image1, resultImage);
         enhancedImage.show();
+    }
+
+    public static void runQualityMetricsProcess() {
+        QualityMetricsService qualityMetricsService = new QualityMetricsService();
+        qualityMetricsService.setPredefinedValues();
+        qualityMetricsService.runQualityMetrics();
+        List<QualityMetricsOutput> result = qualityMetricsService.getQualityMetricsOutputs();
+        ResultsWriter resultsWriter = new ResultsWriter();
+        resultsWriter.writeResults("results", "results", result);
+        MessageDialog.showMessage("Successfully ran quality metrics process ", MessageDialogEnum.INFO);
     }
 
     public static void saveImage(String path) {

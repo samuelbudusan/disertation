@@ -4,5 +4,12 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/samuel/fusion/SimpleAverageFusion.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/samuel/fusion/SimpleMaximumFusion.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/samuel/fusion/SimpleMinimumFusion.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri_hard.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri_hard2.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri_left_blurred.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri_right_blurred.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri_soft.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mri_soft2.jpg" charset="UTF-8" />
   </component>
 </project>

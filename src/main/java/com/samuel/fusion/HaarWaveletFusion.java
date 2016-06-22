@@ -16,12 +16,12 @@ public class HaarWaveletFusion implements FusionMethod {
     private HaarWavelet haarWavelet;
     private FusionMethod simpleFusion;
 
-    HaarWaveletFusion() {
+    public HaarWaveletFusion() {
         haarWavelet = new HaarWavelet();
         this.simpleFusion = new SimpleMaximumFusion();
     }
 
-    HaarWaveletFusion(Integer level, FusionMethod simpleFusion) {
+    public HaarWaveletFusion(Integer level, FusionMethod simpleFusion) {
         haarWavelet = new HaarWavelet(level);
         this.simpleFusion = simpleFusion;
     }

@@ -8,5 +8,5 @@ import ij.ImagePlus;
  */
 public interface FusionService {
 
-    ImagePlus fuse(ImagePlus image1, ImagePlus image2, FusionMethodEnum fusionMethodEnum);
+    ImagePlus fuse(ImagePlus image1, ImagePlus image2, Integer level, Double sigma, FusionMethodEnum fusionMethodEnum);
 }

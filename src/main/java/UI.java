@@ -44,8 +44,46 @@ public class UI {
     private JButton SaveFusedImage;
     private JButton DisplayFusedImage;
     private JButton EnhanceResultButton;
+    private JPanel ResultsPanel;
+    private JPanel ResultsButtonsPanel;
+    private JButton LoadPerfectImage;
+    private JButton RunQualityMetrics;
+    private JCheckBox perfectImageLoaded;
+    private JTextArea textResults;
+    private JButton runQualityMetricsProcess;
+    private JSpinner levelSpinner;
+    private JSpinner sigmaSpinner;
+    private JLabel levelLabel;
+    private JLabel sigmaLabel;
+    private JPanel FusionOptionsNorth;
+    private JPanel FusionOptionsSouth;
+    private JPanel LeftFuzOpt;
+    private JPanel RightFuzOpt;
+    private JMenuBar jMenuBar;
+    private JMenu jMenu1;
+    private JMenuItem jMenuItem1;
+    private JMenuItem jMenuItem2;
 
     public UI() {
+        levelSpinner.setVisible(false);
+        sigmaSpinner.setVisible(false);
+        levelLabel.setVisible(false);
+        sigmaLabel.setVisible(false);
+        SpinnerNumberModel modelLevel = new SpinnerNumberModel(3, 1, 9, 1);
+        levelSpinner.setModel(modelLevel);
+        SpinnerNumberModel modelSigma = new SpinnerNumberModel(3.0, 1.0, 15.0, 0.1);
+        sigmaSpinner.setModel(modelSigma);
+
+        /*jMenuBar = new JMenuBar();
+        jMenu1 = new JMenu();
+        jMenu1.setText("File");
+        jMenuItem1 = new JMenuItem();
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Exit");
+        jMenu1.add(jMenuItem1);
+        frame.setJMenuBar(jMenuBar);*/
+
         LoadImageOneButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 openDicom(ImagesEnum.IMAGE_ONE);
@@ -77,7 +115,10 @@ public class UI {
         fuseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Graphics graphics = FusedImagePanel.getGraphics();
-                Controller.fuse(fusionMethod.getSelectedIndex(), graphics);
+                int level = (Integer) levelSpinner.getValue();
+                double sigma = (Double) sigmaSpinner.getValue();
+
+                Controller.fuse(fusionMethod.getSelectedIndex(),level, sigma, graphics);
                 System.out.println("Fuse images");
             }
         });
@@ -98,6 +139,64 @@ public class UI {
         EnhanceResultButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Controller.enhanceResult();
+            }
+        });
+
+        LoadPerfectImage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                boolean result = openPerfectImage();
+                if (result) {
+                    RunQualityMetrics.setEnabled(true);
+                    perfectImageLoaded.setSelected(true);
+                    System.out.println("Perfect image Loaded");
+                } else {
+                    System.out.println("Error while trying to load perfect image");
+                }
+            }
+        });
+
+        RunQualityMetrics.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.getQualityMetrics(textResults);
+            }
+        });
+
+        runQualityMetricsProcess.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.runQualityMetricsProcess();
+            }
+        });
+
+        fusionMethod.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Integer selectedIndex = fusionMethod.getSelectedIndex();
+                switch (selectedIndex) {
+                    case 3:
+                        levelSpinner.setVisible(true);
+                        sigmaSpinner.setVisible(true);
+                        levelLabel.setVisible(true);
+                        sigmaLabel.setVisible(true);
+                        break;
+                    case 4:
+                        levelSpinner.setVisible(true);
+                        sigmaSpinner.setVisible(true);
+                        levelLabel.setVisible(true);
+                        sigmaLabel.setVisible(true);
+                        break;
+                    case 5:
+                        levelSpinner.setVisible(true);
+                        sigmaSpinner.setVisible(false);
+                        levelLabel.setVisible(true);
+                        sigmaLabel.setVisible(false);
+                        break;
+                    default:
+                        levelSpinner.setVisible(false);
+                        sigmaSpinner.setVisible(false);
+                        levelLabel.setVisible(false);
+                        sigmaLabel.setVisible(false);
+                }
+                levelSpinner.setValue(3);
+                sigmaSpinner.setValue(3.0);
             }
         });
     }
@@ -121,6 +220,22 @@ public class UI {
                 }
             }
         }
+    }
+
+    private boolean openPerfectImage() {
+        boolean result = false;
+        JFileChooser fileChooser = new JFileChooser("/");
+        fileChooser.setFileFilter(new FileNameExtensionFilter("JPEG", "jpg"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("PNG", "png"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("DICOM", "dcm"));
+
+        int retVal = fileChooser.showOpenDialog(frame);
+
+        if (retVal == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            result = Controller.openPerfectImage(path);
+        }
+        return result;
     }
 
     private void saveImage() {
