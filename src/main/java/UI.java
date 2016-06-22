@@ -43,6 +43,7 @@ public class UI {
     private JPanel FusedImageButtonsPanel;
     private JButton SaveFusedImage;
     private JButton DisplayFusedImage;
+    private JButton EnhanceResultButton;
 
     public UI() {
         LoadImageOneButton.addActionListener(new ActionListener() {
@@ -90,7 +91,13 @@ public class UI {
 
         SaveFusedImage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Save fused image");
+                saveImage();
+            }
+        });
+
+        EnhanceResultButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.enhanceResult();
             }
         });
     }
@@ -113,6 +120,20 @@ public class UI {
                     Controller.loadImage(path, ImagesEnum.IMAGE_TWO, graphics);
                 }
             }
+        }
+    }
+
+    private void saveImage() {
+        JFileChooser fileChooser = new JFileChooser("/");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setApproveButtonText("Save");
+
+        int retVal = fileChooser.showOpenDialog(frame);
+
+        if (retVal == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            Controller.saveImage(path);
         }
     }
 

@@ -2,6 +2,7 @@ package com.samuel.fusion;
 
 import com.samuel.enums.FusionMethodEnum;
 import com.samuel.processing.ImageResizer;
+import com.samuel.processing.StackConverter;
 import ij.ImagePlus;
 
 /**
@@ -36,8 +37,13 @@ public class FusionServiceImpl implements FusionService {
                 break;
         }
 
+        StackConverter stackConverter = new StackConverter();
+        image1 = stackConverter.convertImageStack(image1);
+        image2 = stackConverter.convertImageStack(image2);
+
         ImageResizer resizer = new ImageResizer();
         resizer.resize(image1, image2);
+
         ImagePlus imagePlus = fusionMethod.fuse(image1, image2);
         return imagePlus;
     }

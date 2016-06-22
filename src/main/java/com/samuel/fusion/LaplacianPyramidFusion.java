@@ -40,6 +40,10 @@ public class LaplacianPyramidFusion implements FusionMethod {
 
         List<ImagePlus> result = new ArrayList<ImagePlus>(pyramid1.size());
 
+      /*  for (int i = 0; i < pyramid1.size(); i++) {
+            pyramid1.get(i).show();
+        }*/
+
         for (int i = 0; i < pyramid1.size(); i++) {
             result.add(simpleFusion.fuse(pyramid1.get(i), pyramid2.get(i)));
         }

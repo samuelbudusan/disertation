@@ -30,6 +30,8 @@ public class HaarWaveletFusion implements FusionMethod {
         ImagePlus haarImage1 = image1.duplicate();
         haarWavelet.haar2D(haarImage1);
 
+//        haarImage1.show();
+
         ImagePlus haarImage2 = image2.duplicate();
         haarWavelet.haar2D(haarImage2);
 
